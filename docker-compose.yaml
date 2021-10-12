@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ganache:
+    image: trufflesuite/ganache-core:latest
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./data:/ganache_data
