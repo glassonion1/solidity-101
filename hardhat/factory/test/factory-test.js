@@ -10,12 +10,12 @@ describe('Factory', function () {
   });
   it('Should return new address', async function () {
     const addr = await factory.getHelloWorldAddress();
-    console.log("addr: %s", addr);
+    console.log('addr: %s', addr);
     
     await factory.createHelloWorld();
     
     const addr2 = await factory.getHelloWorldAddress();
-    console.log("addr: %s", addr2);
+    console.log('addr: %s', addr2);
 
     expect(addr).to.not.equal(addr2);
   });

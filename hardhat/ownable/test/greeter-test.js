@@ -22,6 +22,6 @@ describe('Greeter', function () {
     const [owner, other] = await ethers.getSigners();
     await expect(
       instance.connect(other).setMessage('kon nichiwa')
-    ).to.be.revertedWith("Ownable: caller is not the owner");
+    ).to.be.revertedWith('Ownable: caller is not the owner');
   });
 });
