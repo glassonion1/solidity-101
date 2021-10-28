@@ -3,7 +3,7 @@ const GreeterContract = artifacts.require('Greeter');
 contract('Greeter', () => {
   let instance;
   before(async () => {
-      instance = await GreeterContract.deployed();
+    instance = await GreeterContract.deployed();
   });
   it('should get message correctly', async () => {
     const expected = 'Hello World!';
