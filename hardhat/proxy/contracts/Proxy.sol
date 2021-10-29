@@ -11,7 +11,9 @@ contract Proxy is Ownable {
     implementation = newImplementation;
   }
   fallback() external payable {
+    console.log("call fallback: %s, %s", msg.value, msg.sender);
     address target = implementation;
+    console.log("target: %s", target);
     assembly {
       let ptr := mload(0x40)
       calldatacopy(ptr, 0, calldatasize())

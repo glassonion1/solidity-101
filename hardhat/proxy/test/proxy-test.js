@@ -1,21 +1,23 @@
 const { expect } = require('chai');
 const { ethers } = require('hardhat');
 
+// @see: https://medium.com/@blockchain101/the-basics-of-upgradable-proxy-contracts-in-ethereum-479b5d3363d6
 describe('Greeter', function () {
-  let instance;
-  before(async () => {
+  it('Should return the greeting', async function () {
+    
+    
     const HelloWorld = await ethers.getContractFactory('HelloWorld');
     const hello = await HelloWorld.deploy();
     await hello.deployed();
     
     const Proxy = await ethers.getContractFactory('Proxy');
-    instance = await Proxy.deploy();
-    await instance.deployed();
+    const proxy = await Proxy.deploy();
+    await proxy.deployed();
 
-    instance.upgrade(hello.address);
-  });
-  it('Should return the greeting', async function () {
+    Proxy.attach(proxy.address).upgrade(hello.address);
+    
+    
     const expected = 'Hello, world!';
-    expect(await instance.greet()).to.equal(expected);
+    expect(await hello.attach(proxy.address).greet()).to.equal(expected);
   });
 });
